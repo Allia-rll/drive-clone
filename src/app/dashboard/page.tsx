@@ -21,7 +21,6 @@ export default async function Dashboard() {
         <div className="w-1/4 h-max text-lg pl-6">
           <h3 className="font-bold">{user?.username}</h3>
         </div>
-
         <div className="flex-grow flex justify-center ">
           <h2 className="bg-gray-800 h-max py-2 px-6 rounded-lg font-bold text-xl">My Files</h2>
         </div>
@@ -30,7 +29,6 @@ export default async function Dashboard() {
           <LogOut />
         </div>
       </div>
-
       <FilesSections />
     </>
   );
