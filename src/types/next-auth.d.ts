@@ -1,20 +1,30 @@
 import { NeonQueryResultHKT } from "drizzle-orm/neon-serverless";
 import NextAuth, { User, type DefaultSession } from "next-auth";
-import type { User as UserModel } from "@/types/models/user";
-
-type UserSession = Omit<UserModel, "password">;
 
 declare module "next-auth" {
   interface Session {
-    user: User;
+    user: {
+      email: string;
+      username: string;
+      id: number;
+      created_at: string | null;
+    };
   }
-  interface User extends UserSession {
+  interface User {
+    email: string;
+    username: string;
     id: number;
+    created_at: string | null;
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
-    user: User;
+    user: {
+      email: string;
+      username: string;
+      id: number;
+      created_at: string | null;
+    };
   }
 }

@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "420e6884-7328-40cd-8f3a-824afc6e3c13",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "1e6910c9-191f-46fb-a63e-8680f3a9e807",
+  "prevId": "420e6884-7328-40cd-8f3a-824afc6e3c13",
   "tables": {
     "files": {
       "name": "files",
@@ -67,58 +67,6 @@
           "tableTo": "users",
           "columnsFrom": [
             "owner"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "thumbnails": {
-      "name": "thumbnails",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "fileId": {
-          "name": "fileId",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "urlThumb": {
-          "name": "urlThumb",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "id_thumbnails_index": {
-          "name": "id_thumbnails_index",
-          "columns": [
-            "id"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "thumbnails_fileId_files_id_fk": {
-          "name": "thumbnails_fileId_files_id_fk",
-          "tableFrom": "thumbnails",
-          "tableTo": "files",
-          "columnsFrom": [
-            "fileId"
           ],
           "columnsTo": [
             "id"

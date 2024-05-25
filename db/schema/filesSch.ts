@@ -7,7 +7,8 @@ export const files = sqliteTable(
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
     filename: text("filename").notNull(),
-    url: text("path").notNull(),
+    url: text("url").notNull(),
+    type: text("type").notNull(),
     created_at: text("created_at").default(sql`current_timestamp`),
     owner: integer("owner")
       .notNull()
@@ -18,8 +19,8 @@ export const files = sqliteTable(
   })
 );
 
-export const userRelations = relations(files, ({ one }) => ({
-  users: one(users, {
+export const filesRelations = relations(files, ({ one }) => ({
+  user: one(users, {
     fields: [files.owner],
     references: [users.id],
   }),
