@@ -40,6 +40,8 @@ next-env.d.ts
 
 # Database
 db/*.db
+db/migrations
 
 # Failed test
 /trash
+
