@@ -37,3 +37,9 @@ next-env.d.ts
 
 # Next Auth and EdgeStore
 *.env
+
+# Database
+db/*.db
+
+# Failed test
+/trash
