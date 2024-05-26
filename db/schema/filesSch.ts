@@ -1,15 +1,15 @@
-import { index, sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
+import { index, pgTable, integer, text, serial, timestamp } from "drizzle-orm/pg-core";
 import { relations, sql } from "drizzle-orm";
 import { users } from "./userSch";
 
-export const files = sqliteTable(
+export const files = pgTable(
   "files",
   {
-    id: integer("id").primaryKey({ autoIncrement: true }),
+    id: serial("id").primaryKey(),
     filename: text("filename").notNull(),
     url: text("url").notNull(),
     type: text("type").notNull(),
-    created_at: text("created_at").default(sql`current_timestamp`),
+    created_at: timestamp("created_at").defaultNow(),
     owner: integer("owner")
       .notNull()
       .references(() => users.id),
