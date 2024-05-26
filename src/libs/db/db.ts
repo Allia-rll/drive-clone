@@ -1,14 +1,19 @@
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import Database from "better-sqlite3";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Client } from "pg";
 
 import * as userSchema from "../../../db/schema/userSch";
 import * as filesSchema from "../../../db/schema/filesSch";
 
-const drizzleClientSingleton = () => {
-  const sqlite = new Database("db/dev.db");
-  const db = drizzle(sqlite, {
-    schema: { ...userSchema, ...filesSchema },
+const drizzleClientSingleton = async () => {
+  const client = new Client({
+    user: "scloud",
+    password: "scloud",
+    host: "localhost",
+    port: 1521,
+    database: "scloud",
   });
+  await client.connect();
+  const db = drizzle(client)
   return db;
 };
 
