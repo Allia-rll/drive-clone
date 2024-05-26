@@ -1,12 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useDropzone } from "react-dropzone";
-import UploadingFile from "./UploadingFile";
+
+interface UploadZoneProps {
+  onFileAdded: (file: File) => void;
+}
 
 const ERRORS = {
   invalid_file_type: "Not file supported",
-  too_many_files: "You can only upload 5 files at a time",
+  too_many_files: "You can only upload one file at a time",
   file_too_large: "There is a file too large",
   file_not_found: "No file found",
   upload_failed: "Upload failed",
@@ -33,7 +36,7 @@ const typesAccepted = [
   "wav",
 ];
 
-export default function UploadZone() {
+export default function UploadZone({ onFileAdded }: UploadZoneProps) {
   const validateFiles = (file: File) => {
     if (file === undefined || file.name === undefined)
       return {
@@ -61,10 +64,11 @@ export default function UploadZone() {
   const { getRootProps, getInputProps, acceptedFiles, fileRejections } =
     useDropzone({
       onDrop: (acceptedFiles) => {
-        console.log(acceptedFiles);
+        const file = acceptedFiles[0];
+        onFileAdded(file);
       },
       validator: validateFiles,
-      maxFiles: 5,
+      maxFiles: 1,
     });
 
   const errorsMessage = useMemo(() => {
@@ -82,7 +86,7 @@ export default function UploadZone() {
     }
     return undefined;
   }, [fileRejections]);
-  
+
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="bg-slate-800 p-3 rounded-lg w-full">
@@ -105,11 +109,9 @@ export default function UploadZone() {
               or drag and drop{" "}
             </p>
           )}
-
           <input {...getInputProps()} />
         </div>
       </div>
-      <UploadingFile />
     </div>
   );
 }

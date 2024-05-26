@@ -16,9 +16,7 @@ export const saveFile = async (inputFile: FileInput) => {
     const user = session.user;
 
     const insertFile = {
-      filename: inputFile.filename,
-      type: inputFile.type,
-      url: inputFile.url,
+      ...inputFile,
       owner: user.id,
     };
 
@@ -26,7 +24,7 @@ export const saveFile = async (inputFile: FileInput) => {
     if (!newFile[0]) {
       throw new Error("Error creating file");
     }
-
+    console.log(newFile[0])
   } catch (error) {
     if (error instanceof Error) {
       throw error;

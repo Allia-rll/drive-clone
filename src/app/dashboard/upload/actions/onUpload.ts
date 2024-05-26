@@ -9,6 +9,10 @@ export const onUpload = async (formData: FormData) => {
   try {
     unstable_noStore();
     const file = formData.get("file") as File;
+    const filename = formData.get("filename") as string;
+    const id_project = formData.get("id_project") as string;
+    const description = formData.get("description") as string;
+
     if (!file) throw new Error("No file selected");
 
     const extension = file.name.split(".").pop();
@@ -29,9 +33,11 @@ export const onUpload = async (formData: FormData) => {
     });
     
     const inputFile = {
-      filename: file.name,
+      filename,
       type: file.type,
       url: res.url,
+      id_project,
+      description,
     } as FileInput;
 
     await saveFile(inputFile);

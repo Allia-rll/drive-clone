@@ -13,9 +13,12 @@ export const files = sqliteTable(
     owner: integer("owner")
       .notNull()
       .references(() => users.id),
+    description: text("description"),
+    id_project: text("id_project").notNull(),
   },
   (table) => ({
     id_Files_index: index("id_Files_index").on(table.id),
+    id_project_index: index("id_project_index").on(table.id_project),
   })
 );
 
