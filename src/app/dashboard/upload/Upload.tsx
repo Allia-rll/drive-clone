@@ -1,8 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { onUpload } from "./actions/onUpload";
+import UploadZone from "./components/UploadZone";
+import UploadButton from "./components/UploadButton";
 
 export default function Upload() {
+  const [open, setOpen] = useState(false);
 
   const handlerChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handlerChange");
@@ -14,19 +18,13 @@ export default function Upload() {
   };
 
   return (
-    <div>
-      <label
-        htmlFor="dropzone-file"
-        className="flex flex-col items-center justify-center w-20 h-7 rounded-lg cursor-pointer bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-800 shadow-lg shadow-blue-800/80"
-      >
-        <div className="flex flex-col items-center justify-center">
-          <p className="text-sm text-white">
-            <span className="font-semibold">Upload</span>
-          </p>
+    <div className="flex flex-col flex-shrink-0 items-end">
+      <UploadButton onClick={() => setOpen(!open)} />
+      {open && (
+        <div className="relative z-50 w-96 h-max mt-3">
+          <UploadZone />
         </div>
-        <input id="dropzone-file" type="file" className="hidden" onChange={handlerChange}
-        />
-      </label>
+      )}
     </div>
   );
 }

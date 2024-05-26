@@ -17,7 +17,7 @@ export default async function Dashboard() {
 
   return (
     <>
-      <div className="w-screen h-16 flex items-center text-white">
+      <div className="w-screen h-16 flex mt-4 text-white">
         <div className="w-1/4 h-max text-lg pl-6">
           <h3 className="font-bold">{user?.username}</h3>
         </div>
