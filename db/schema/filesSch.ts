@@ -1,5 +1,5 @@
 import { index, pgTable, integer, text, serial, timestamp } from "drizzle-orm/pg-core";
-import { relations, sql } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import { users } from "./userSch";
 
 export const files = pgTable(

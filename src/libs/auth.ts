@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getUserByUsername } from "../app/auth/lib/userStatements";
 import { comparePass } from "../app/auth/utils/encryptPass";
+import { User } from "@/types/models/user";
 
 export const authOptions = {
   providers: [
@@ -12,14 +13,15 @@ export const authOptions = {
         username: {},
         password: {},
       },
+      // @ts-ignore
       async authorize(credentials) {
         const { username, password } = credentials as {
           username: string;
           password: string;
         };
 
-        const user = await getUserByUsername(username);
-
+        const [user] = (await getUserByUsername(username)) as User[];
+        console.log(user);
         if (!user) {
           throw new Error("No user found");
         }

@@ -15,10 +15,10 @@ export const onRegister = async (data: RegisterInput) => {
       email,
       password: hashedPass,
     } as NewUser;
+    
+    const result = await createUser(user);
 
-    const newUser = await createUser(user);
-
-    if (!newUser[0]) {
+    if (result !== 1) {
       throw new Error("User already exists");
     }
 

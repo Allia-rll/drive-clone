@@ -1,14 +1,12 @@
 "use server";
-import db from "@/libs/db/db";
+import qb from "@/libs/db/queryGenerator";
 import { files } from "@/types/models/files";
 import { eq } from "drizzle-orm";
 
 export const getProjectByOwner = async (idOwner: number) => {
-  const projects = await db
-    .selectDistinct({
-      project_id: files.id_project,
-    })
+  const projects = qb
+    .selectDistinct()
     .from(files)
-    .where(eq(files.owner, idOwner));
-  return Promise.resolve(projects);
+    .where(eq(files.owner, idOwner)).groupBy().toSQL();
+  console.log(projects);
 };
