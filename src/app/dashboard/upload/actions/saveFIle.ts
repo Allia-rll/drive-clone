@@ -21,10 +21,9 @@ export const saveFile = async (inputFile: FileInput) => {
     };
 
     const newFile = await createFile(insertFile);
-    if (!newFile[0]) {
+    if (newFile !== 1) {
       throw new Error("Error creating file");
     }
-    console.log(newFile[0])
   } catch (error) {
     if (error instanceof Error) {
       throw error;

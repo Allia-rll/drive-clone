@@ -12,3 +12,7 @@ export { createUser, getUserByUsername };
 import { getFileByOwner, createFile } from "./dashboard/lib/fileStatements";
 
 export { getFileByOwner, createFile };
+
+import { getProjectByOwner } from "./dashboard/upload/lib/projectStament";
+
+export { getProjectByOwner };

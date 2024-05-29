@@ -15,7 +15,7 @@ export default function DropdownOptions({
 }: DropdownOptionsProps) {
   return (
     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-      {projects.map((project) => (
+      {projects?.map((project) => (
         <li
           key={project.project_id}
           onClick={() => onClick(project.project_id)}

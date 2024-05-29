@@ -4,11 +4,12 @@ import {
   createUser,
   getUserByUsername,
   getFileByOwner,
+  getProjectByOwner,
 } from "./action";
 
 export default function Home() {
   const onCreate = async () => {
-    const file = {
+    /* const file = {
       filename: "file1",
       url: "/home/user/file1",
       owner: 1,
@@ -19,8 +20,8 @@ export default function Home() {
       username: "papu",
       password: "asdas",
       email: "appud@gmail,com",
-    };
-    const res = await createUser(user);
+    }; */
+    const res = await getProjectByOwner(1);
     console.log(res);
   };
 

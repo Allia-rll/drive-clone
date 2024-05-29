@@ -14,6 +14,6 @@ export default async function onDisplayProjects() {
   }
 
   const projects = await getProjectByOwner(user?.id);
-
+  console.log(projects);
   return projects;
 }
